@@ -24,7 +24,6 @@
     "nano": "^6.4.4",
     "napi-js": "^3.0.5",
     "node-cron": "^2.0.3",
-    "puppeteer": "^1.19.0",
     "request": "^2.87.0",
     "request-async": "^0.1.0",
     "request-promise": "^4.2.4",
