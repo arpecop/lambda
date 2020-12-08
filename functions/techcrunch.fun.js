@@ -3,8 +3,7 @@ const request = require("request-promise");
 const async = require("async");
 // eslint-disable-next-line prefer-destructuring
 const html2json = require("html2json").html2json;
-const levelup = require("levelup");
-const leveldown = require("leveldown");
+
 //const db = levelup(leveldown("/tmp/mydb123232323"));
 const sanitizeHtml = require("sanitize-html");
 
@@ -37,7 +36,9 @@ async function go(params, callback) {
 }
 // EMPdsada
 if (!process.env.PORT) {
-  go({}, (data) => {});
+  go({}, (data) => {
+    console.log(data);
+  });
 }
 module.exports = {
   go,
