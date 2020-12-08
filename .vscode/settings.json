@@ -1,0 +1,14 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+        
+     
+            {
+                "match": "\\.fun.js$",
+                "cmd": "node /Users/rudix/Desktop/HEROKU/lambda/_firebase.js ${file}"
+            }
+        
+        ]
+    }
+    
+}
