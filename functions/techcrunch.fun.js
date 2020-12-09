@@ -5,6 +5,16 @@ const async = require("async");
 const html2json = require("html2json").html2json;
 
 const sanitizeHtml = require("sanitize-html");
+const { AWSTranslateJSON } = require("aws-translate-json");
+const awsConfig = {
+  accessKeyId: process.env.AWS_TRANSLATE_ID,
+  secretAccessKey: process.env.AWS_TRANSLATE_SECRET,
+  region: process.env.AWS_TRANSLATE_REGION,
+};
+const source = "en";
+const taget = ["bg"];
+
+const { translateJSON } = new AWSTranslateJSON(awsConfig, source, taget);
 
 function sanitize() {
   return new Promise((resolve) => {
@@ -21,8 +31,18 @@ function sanitize() {
           );
           return x;
         });
-
-        resolve(filtered);
+        const minified = filtered.map((item) => {
+          return {
+            content: item.content.rendered.child,
+            image: item.jetpack_featured_media_url,
+            shortlink: item.shortlink,
+            slug: item.slug,
+            title: item.title.rendered,
+            id: item.id,
+            date: item.date,
+          };
+        });
+        resolve(minified);
       }
     );
   });
@@ -36,17 +56,18 @@ async function go(params, callback) {
 // EMPdsada
 if (!process.env.PORT) {
   go({}, (data) => {
-    // console.log(data);
+    console.log(data[0]);
   });
-  const translate = require("translate-google");
 
-  translate("I speak Chinese", { to: "zh-cn" })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  translateJSON({
+    key1: "my text here",
+    key2: "other text",
+    key3: {
+      key4: "nested text",
+    },
+  }).then((data) => {
+    console.log(data);
+  });
 }
 module.exports = {
   go,
