@@ -64,14 +64,19 @@ function sanitize() {
   });
 }
 
-async function go(params, callback) {
+async function go(params, cb) {
   const filtered = await sanitize();
-  filtered.forEach(async (element) => {
-    const x = await post(element, "TechCrunch");
-    console.log(x);
-  });
 
-  callback(filtered);
+  async.each(
+    filtered,
+    async function (item, callback) {
+      const x = await post(item, "TechCrunch");
+      callback();
+    },
+    function (err) {
+      cb(filtered);
+    }
+  );
 }
 // EMPdsada
 if (!process.env.PORT) {
