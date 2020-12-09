@@ -4,7 +4,6 @@ const async = require("async");
 // eslint-disable-next-line prefer-destructuring
 const html2json = require("html2json").html2json;
 
-//const db = levelup(leveldown("/tmp/mydb123232323"));
 const sanitizeHtml = require("sanitize-html");
 
 function sanitize() {
@@ -37,8 +36,17 @@ async function go(params, callback) {
 // EMPdsada
 if (!process.env.PORT) {
   go({}, (data) => {
-    console.log(data);
+    // console.log(data);
   });
+  const translate = require("translate-google");
+
+  translate("I speak Chinese", { to: "zh-cn" })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 module.exports = {
   go,
