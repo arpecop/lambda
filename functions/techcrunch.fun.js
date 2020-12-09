@@ -79,11 +79,7 @@ async function go(params, cb) {
   );
 }
 // EMPdsada
-if (!process.env.PORT) {
-  go({}, (data) => {
-    console.log(JSON.stringify(data[0]));
-  });
-}
-module.exports = {
-  go,
-};
+
+go({}, (data) => {
+  console.log(JSON.stringify(data[0]));
+});
