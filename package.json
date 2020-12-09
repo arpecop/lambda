@@ -9,6 +9,7 @@
   "dependencies": {
     "async": "^2.6.3",
     "await-fs": "^1.0.0",
+    "aws-sdk": "^2.806.0",
     "aws-translate-json": "^0.0.3",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
@@ -20,6 +21,7 @@
     "md5": "^2.2.1",
     "nano": "^6.4.4",
     "napi-js": "^3.0.5",
+    "node-fetch": "^2.6.1",
     "puppeteer": "^5.5.0",
     "request": "^2.87.0",
     "request-async": "^0.1.0",
